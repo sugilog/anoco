@@ -1,4 +1,4 @@
-package anoco
+package agent
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 	"strconv"
 )
 
-func AgentServer(port int) {
+func Server(port int) {
 	http.HandleFunc("/", IndexHandler)
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }

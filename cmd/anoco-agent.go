@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/sugilog/anoco"
+	"github.com/sugilog/anoco/agent"
 )
 
 func main() {
-	anoco.AgentServer(15525)
+	agent.Server(15525)
 }
