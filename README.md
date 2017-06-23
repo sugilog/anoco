@@ -19,11 +19,11 @@ TODO
 
 Functions
 
-- Health Check.
-- Job Subscriber. (From Job Manager)
-- Job Status-Report Subscriber. (From Job Manager)
-- Job Execution Worker.
-- Job Reporter. (To Job Manager)
+- [x] Health Check.
+- [x] Job Subscriber. (From Job Manager)
+- [ ] Job Status-Report Subscriber. (From Job Manager)
+- [x] Job Execution Worker.
+- [ ] Job Reporter. (To Job Manager)
 
 Component
 
@@ -33,13 +33,13 @@ Component
 
 Functions
 
-- Agent Discovery Worker. (To Agent)
-- Job Registerer. (On demand, Agent-Handled)
-- Job Publisher. (To Agent, Retry support)
-- Job Status Observer. (To Agent)
-- Job Status Report Receiver. (From Agent)
+- [ ] Agent Discovery Worker. (To Agent)
+- [ ] Job Registerer. (On demand, Agent-Handled)
+- [ ] Job Publisher. (To Agent, Retry support)
+- [ ] Job Status Observer. (To Agent)
+- [ ] Job Status Report Receiver. (From Agent)
 
 Component
 
-- Workers bin.
+- Workers bin ... ?
 - Datastore ... ?
