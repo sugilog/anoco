@@ -2,7 +2,7 @@ package agent
 
 type Result struct {
 	Status string
-	Id     int
+	UUID   string
 	Error  string
 	Output string
 }

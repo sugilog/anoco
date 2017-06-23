@@ -7,14 +7,13 @@ import (
 func JobStatus(checker chan Job, checked chan string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// FIXME
-		jobid := 1
-		checker <- Job{Id: jobid}
+		jobid := "1"
+		checker <- Job{UUID: jobid}
 
 		for {
 			select {
 			case status := <-checked:
-				// FIXME
-				SuccessResult(w, Result{Id: jobid, Status: status})
+				SuccessResult(w, Result{UUID: jobid, Status: status})
 				return
 			}
 		}

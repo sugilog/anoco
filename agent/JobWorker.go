@@ -15,7 +15,7 @@ func JobWorker(
 ) {
 	jobappend := make(chan Job)
 	jobremove := make(chan Job)
-	jobs := make(map[int]Job)
+	jobs := make(map[string]Job)
 
 	for {
 		select {
@@ -30,8 +30,7 @@ func JobWorker(
 				err := cmd.Run()
 
 				result := Result{
-					// FIXME
-					Id:     job.Id,
+					UUID:   job.UUID,
 					Output: out.String(),
 				}
 
@@ -47,13 +46,13 @@ func JobWorker(
 				jobremove <- job
 			}(j)
 		case j := <-jobappend:
-			jobs[j.Id] = j
+			jobs[j.UUID] = j
 		case j := <-jobremove:
-			delete(jobs, j.Id)
+			delete(jobs, j.UUID)
 		case j := <-checker:
-			job := jobs[j.Id]
+			job := jobs[j.UUID]
 
-			if job.Id != 0 {
+			if job.UUID != "" {
 				checked <- "WORKING"
 			} else {
 				checked <- "UNKNOWN"

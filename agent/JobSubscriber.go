@@ -36,13 +36,8 @@ func JobSubscriber(publisher chan Job) func(http.ResponseWriter, *http.Request) 
 			return
 		}
 
-		job := Job{
-			// FIXME
-			Id: 1,
-			// FIXME
-			Command: params.Command,
-		}
+		job := NewJob(params.Command)
 		publisher <- job
-		SuccessResult(w, Result{Id: job.Id, Status: "STARTED"})
+		SuccessResult(w, Result{UUID: job.UUID, Status: "STARTED"})
 	}
 }
