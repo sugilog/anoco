@@ -10,6 +10,7 @@ import (
 
 func Server(port int) {
 	http.HandleFunc("/", IndexHandler)
+	http.HandleFunc("/health", HealthCheck)
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }
 
