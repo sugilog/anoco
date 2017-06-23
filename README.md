@@ -9,6 +9,8 @@ Development
 
 Go 1.8+
 
+[make2help](https://github.com/Songmu/make2help)
+
 
 TODO
 ------
