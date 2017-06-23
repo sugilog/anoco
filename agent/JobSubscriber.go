@@ -1,6 +1,7 @@
 package agent
 
 import (
+	"errors"
 	"io/ioutil"
 	"net/http"
 
@@ -27,6 +28,11 @@ func JobSubscriber(worker chan Job) func(http.ResponseWriter, *http.Request) {
 
 		if err != nil {
 			ErrorResult(w, err)
+			return
+		}
+
+		if len(params.Command) == 0 {
+			ErrorResult(w, errors.New("Required 'Command' parameter not given."))
 			return
 		}
 

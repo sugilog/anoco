@@ -1,0 +1,3 @@
+{
+  "Command": "sleep 2; echo foo bar;"
+}
