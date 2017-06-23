@@ -21,7 +21,7 @@ Functions
 
 - [x] Health Check.
 - [x] Job Subscriber. (From Job Manager)
-- [ ] Job Status-Report Subscriber. (From Job Manager)
+- [x] Job Status-Report Subscriber. (From Job Manager)
 - [x] Job Execution Worker.
 - [ ] Job Reporter. (To Job Manager)
 
