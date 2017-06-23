@@ -10,8 +10,8 @@ import (
 func JobWorker(
 	publisher chan Job,
 	reporter chan Result,
-	status chan Job,
-	reply chan string,
+	checker chan Job,
+	checked chan string,
 ) {
 	jobappend := make(chan Job)
 	jobremove := make(chan Job)
