@@ -1,8 +1,9 @@
 package agent
 
 import (
-	"github.com/vmihailenco/msgpack"
 	"net/http"
+
+	"github.com/vmihailenco/msgpack"
 )
 
 func HealthCheck(w http.ResponseWriter, r *http.Request) {
