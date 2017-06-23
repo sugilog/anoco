@@ -11,6 +11,8 @@ deps:
 ## Build Releases
 # release:
 # 	  go build
+demo.agent:
+	go run cmd/anoco-agent.go
 
 ## Show help
 help:
