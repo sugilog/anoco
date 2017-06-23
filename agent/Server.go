@@ -1,8 +1,6 @@
 package agent
 
 import (
-	"fmt"
-	"html"
 	"log"
 	"net/http"
 	"strconv"
