@@ -7,7 +7,7 @@ import (
 func JobStatus(checker chan Job, checked chan string) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// FIXME
-		jobid := "1"
+		jobid := r.URL.Query().Get("uuid")
 		checker <- Job{UUID: jobid}
 
 		for {
