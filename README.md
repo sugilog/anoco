@@ -35,7 +35,7 @@ Functions
 
 - Agent Discovery Worker. (To Agent)
 - Job Registerer. (On demand, Agent-Handled)
-- Job Publisher. (To Agent)
+- Job Publisher. (To Agent, Retry support)
 - Job Status Observer. (To Agent)
 - Job Status Report Receiver. (From Agent)
 
