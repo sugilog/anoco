@@ -8,7 +8,7 @@ import (
 	"github.com/vmihailenco/msgpack"
 )
 
-func JobSubscriber(worker chan Job) func(http.ResponseWriter, *http.Request) {
+func JobSubscriber(publisher chan Job) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != "POST" {
 			MethodNotAllowed(w)
@@ -38,11 +38,11 @@ func JobSubscriber(worker chan Job) func(http.ResponseWriter, *http.Request) {
 
 		job := Job{
 			// FIXME
-			Id: 0,
+			Id: 1,
 			// FIXME
 			Command: params.Command,
 		}
-		worker <- job
+		publisher <- job
 		SuccessResult(w, Result{Id: job.Id, Status: "STARTED"})
 	}
 }

@@ -7,16 +7,26 @@ import (
 	"os/exec"
 )
 
-func JobWorker(worker chan Job, reporter chan Result) {
+func JobWorker(
+	publisher chan Job,
+	reporter chan Result,
+	status chan Job,
+	reply chan string,
+) {
+	jobappend := make(chan Job)
+	jobremove := make(chan Job)
+	jobs := make(map[int]Job)
+
 	for {
 		select {
-		case j := <-worker:
+		case j := <-publisher:
 			go func(job Job) {
 				var out bytes.Buffer
 				cmd := exec.Command("bash", "-c", job.Command)
 
 				cmd.Stdout = &out
 				cmd.Stderr = &out
+				jobappend <- job
 				err := cmd.Run()
 
 				result := Result{
@@ -34,7 +44,20 @@ func JobWorker(worker chan Job, reporter chan Result) {
 				}
 
 				reporter <- result
+				jobremove <- job
 			}(j)
+		case j := <-jobappend:
+			jobs[j.Id] = j
+		case j := <-jobremove:
+			delete(jobs, j.Id)
+		case j := <-checker:
+			job := jobs[j.Id]
+
+			if job.Id != 0 {
+				checked <- "WORKING"
+			} else {
+				checked <- "UNKNOWN"
+			}
 		}
 	}
 }

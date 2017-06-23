@@ -7,11 +7,13 @@ import (
 )
 
 func Server(port int) {
-	worker := make(chan Job)
+	publisher := make(chan Job)
 	reporter := make(chan Result)
+	checker := make(chan Job)
+	checked := make(chan string)
 
 	go func() {
-		JobWorker(worker, reporter)
+		JobWorker(publisher, reporter, checker, checked)
 	}()
 
 	// FIXME
@@ -25,6 +27,7 @@ func Server(port int) {
 	}()
 
 	http.HandleFunc("/health", HealthCheck)
-	http.HandleFunc("/job", JobSubscriber(worker))
+	http.HandleFunc("/job/status", JobStatus(checker, checked))
+	http.HandleFunc("/job", JobSubscriber(publisher))
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
 }
