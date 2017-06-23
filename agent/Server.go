@@ -26,12 +26,7 @@ func Server(port int) {
 		}
 	}()
 
-	http.HandleFunc("/", IndexHandler)
 	http.HandleFunc("/health", HealthCheck)
 	http.HandleFunc("/job", JobSubscriber(worker))
 	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(port), nil))
-}
-
-func IndexHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 }
