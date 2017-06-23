@@ -11,16 +11,15 @@ func SuccessResult(w http.ResponseWriter, result Result) {
 	b, err := msgpack.Marshal(&result)
 
 	if err != nil {
-		ErrorResult(w, result.Id, err)
+		ErrorResult(w, err)
 	} else {
 		w.WriteHeader(200)
 		w.Write(b)
 	}
 }
 
-func ErrorResult(w http.ResponseWriter, id int, err error) {
+func ErrorResult(w http.ResponseWriter, err error) {
 	b, _ := msgpack.Marshal(&Result{
-		Id:    id,
 		Error: fmt.Sprintf("%s", err),
 	})
 
